@@ -1,3 +1,5 @@
+import { languages } from "./assets/languages"
+
 function App() {
   return (
     <main>
@@ -9,6 +11,16 @@ function App() {
         <h2 className="text-[1.25rem] m-[5px]">You win!</h2>
         <p className="m-[5px]">Well done! 🎉</p>
       </section>
+      <div className="max-w-[350px] flex flex-wrap justify-center gap-1">
+        {languages.map((language) => (
+          <div 
+            className="px-2 py-0.5 rounded"
+            style={{ color: language.color, backgroundColor: language.backgroundColor }}
+          >
+            {language.name}
+          </div>
+        ))}
+      </div>
     </main>
   )
 }
