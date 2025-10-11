@@ -1,6 +1,9 @@
+import { useState } from "react"
 import { languages } from "./assets/languages"
 
 function App() {
+  const [word, setWord] = useState<string>("React")
+
   return (
     <main>
       <header className="text-center">
@@ -11,16 +14,21 @@ function App() {
         <h2 className="text-[1.25rem] m-[5px]">You win!</h2>
         <p className="m-[5px]">Well done! 🎉</p>
       </section>
-      <div className="max-w-[350px] flex flex-wrap justify-center gap-1">
+      <section className="max-w-[350px] flex flex-wrap justify-center gap-1 mb-9">
         {languages.map((language) => (
-          <div 
+          <span
             className="px-2 py-0.5 rounded"
             style={{ color: language.color, backgroundColor: language.backgroundColor }}
           >
             {language.name}
-          </div>
+          </span>
         ))}
-      </div>
+      </section>
+      <section className="flex gap-[2px] justify-center">
+        {word.toUpperCase().split("").map((char) => (
+          <span className="size-[40px] w-[40px] bg-[#323232] flex justify-center items-center text-[1.125rem] border-b-[1px] border-[#f9f4da]">{char}</span>
+        ))}
+      </section>
     </main>
   )
 }
