@@ -1,8 +1,28 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { languages } from "./assets/languages"
+import clsx from "clsx"
 
 function App() {
   const [word, setWord] = useState<string>("React")
+  const [guessed, setGuessed] = useState<string>("")
+  const [guessesLeft, setGuessesLeft] = useState<number>(languages.length)
+  const [gameActive, setGameActive] = useState<boolean>(true)
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+  
+
+  function handleClick (letter: string) {
+    setGuessed((prev) => prev + letter)
+    // is game won
+    const allLettersGuessed = word.split("").every((char) => guessed.includes(char))
+    if (isCorrectGuess(letter))
+
+    // we are missing something here
+  }
+
+function isCorrectGuess (letter: string) {
+  word.includes(letter)
+}
 
   return (
     <main>
@@ -25,9 +45,16 @@ function App() {
         ))}
       </section>
       <section className="flex gap-[2px] justify-center">
-        {word.toUpperCase().split("").map((char) => (
-          <span className="size-[40px] w-[40px] bg-[#323232] flex justify-center items-center text-[1.125rem] border-b-[1px] border-[#f9f4da]">{char}</span>
+        {word.toUpperCase().split("").map((char, idx) => (
+          <span key={idx} className="size-[40px] w-[40px] bg-[#323232] flex justify-center items-center text-[1.125rem] border-b-[1px] border-[#f9f4da]">{char}</span>
         ))}
+      </section>
+      <section>
+        {alphabet.split("").map((letter) => (
+          <button className={clsx("")} onClick={() => handleClick(letter)}>{letter}</button>
+        )
+
+        )}
       </section>
     </main>
   )
